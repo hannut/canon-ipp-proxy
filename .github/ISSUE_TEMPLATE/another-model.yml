@@ -1,0 +1,47 @@
+name: Another printer model
+description: Report how the proxy works, or fails, with a printer model not tested yet
+labels: [model]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Attach only the scrubbed files** (`MODEL-get-printer-attributes.raw`, `MODEL-snmp-walk.tsv`) that
+        `python3 tools/capture.py PRINTER_ADDRESS capture/` writes. Never attach `reply.raw` or `walk.tsv`: they
+        hold your printer's address, serial number and location.
+  - type: input
+    id: model
+    attributes:
+      label: Printer model
+      placeholder: e.g. Canon MF642Cdw
+    validations:
+      required: true
+  - type: input
+    id: firmware
+    attributes:
+      label: Printer firmware version
+    validations:
+      required: true
+  - type: input
+    id: system
+    attributes:
+      label: CUPS version and distribution
+      placeholder: e.g. CUPS 2.4.19, Fedora 44
+    validations:
+      required: true
+  - type: dropdown
+    id: without-proxy
+    attributes:
+      label: Does `lpadmin -m everywhere` work without the proxy?
+      options: ["No", "Yes", "Not tried"]
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: What happened with the proxy
+      description: Did the queue get created, did a test page print? Paste error messages.
+  - type: textarea
+    id: files
+    attributes:
+      label: Scrubbed capture files
+      description: Drag the two scrubbed files here.

@@ -1,0 +1,34 @@
+name: Bug
+description: Something does not work as the README says
+labels: [bug]
+body:
+  - type: input
+    id: version
+    attributes:
+      label: canon-ipp-proxy version
+      description: Output of `canon-ipp-proxy --version`
+    validations:
+      required: true
+  - type: dropdown
+    id: mode
+    attributes:
+      label: How it runs
+      options: [user service (install), system service (install --system), "remote (install --host)", foreground]
+    validations:
+      required: true
+  - type: input
+    id: printer
+    attributes:
+      label: Printer model and firmware
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened, and what you expected
+    validations:
+      required: true
+  - type: textarea
+    id: log
+    attributes:
+      label: Log excerpt
+      description: "`journalctl --user -u canon-ipp-proxy@NAME` (system service: `journalctl -u canon-ipp-proxy@NAME`). Replace addresses you do not want to share."
+      render: text
